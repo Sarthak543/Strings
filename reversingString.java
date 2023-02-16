@@ -44,32 +44,65 @@ class StringOperation {
     }
 
     Boolean isAnagram(String str1, String str2) {
-    /*
-     * steps to check whether strings are anagram or not
-     * 1. remove whitespaces
-     * 2. convert to lower or upper accordingly
-     * 3. convert to char array
-     * 4. sort the arrays
-     * 5. compare if equal then anagram else not an anagram
-    */
+        /*
+         * steps to check whether strings are anagram or not
+         * 1. remove whitespaces
+         * 2. convert to lower or upper accordingly
+         * 3. convert to char array
+         * 4. sort the arrays
+         * 5. compare if equal then anagram else not an anagram
+         */
 
-    str1=str1.replace(" ", "");
-    str2=str2.replace(" ", "");
+        str1 = str1.replace(" ", "");
+        str2 = str2.replace(" ", "");
 
-    str1.toLowerCase();
-    str2.toLowerCase();
+        str1.toLowerCase();
+        str2.toLowerCase();
 
-    char s1[]=str1.toCharArray();
-    char s2[]=str1.toCharArray();
+        char s1[] = str1.toCharArray();
+        char s2[] = str1.toCharArray();
 
-    Arrays.sort(s1);
-    Arrays.sort(s2);
+        Arrays.sort(s1);
+        Arrays.sort(s2);
 
-    if (Arrays.equals(s1, s2)) {
-        return true;
-    } else {
-        return false;
+        if (Arrays.equals(s1, s2)) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    Boolean ispangram(String str) {
+        /*
+         * A string is pangram if it contains all the alphabets
+         * to check following steps to be take
+         * 1. remove whitespaces
+         * 2. change to upper/lower case accordingly
+         * 3. convert it into character array
+         * 4. now create an int array of size 26
+         * 5. now increment the value of arr[char[i]-65] 65 for upper 97 for lower
+         * 6. If every value of int array are non zero then it is pangram else not a
+         * pangram
+         */
+
+        str = str.replace(" ", "");
+
+        str = str.toUpperCase();
+         
+        char character[] = str.toCharArray();
+        int integer[] = new int[26];
+
+        for (int i : character) {
+            integer[i - 65]++;
+        }
+
+        for (int i : integer) {
+            if (i == 0) {
+                return false;
+            }
+        }
+        return true;
+
     }
 }
 
@@ -82,6 +115,7 @@ public class reversingString {
         String name3 = "Sarthak Jaiswal";
         String name4 = "MADAM";
         String name5 = "DAAMM";
+        String name6 = "The quick brown fox jumps over the lazy dog";
         System.out.println("before reversing : " + name);
         name = so.reverse(name);
         System.out.println("after reversing : " + name);
@@ -94,7 +128,8 @@ public class reversingString {
         name3 = so.reverseWordOnPosition(name3);
         System.out.println("after reversing word on its position: " + name3);
 
-        System.out.println("isPalindrome : "+so.isPalindrome(name4));
-        System.out.println("isAnagram : "+so.isAnagram(name4,name5));
+        System.out.println("isPalindrome : " + so.isPalindrome(name4));
+        System.out.println("isAnagram : " + so.isAnagram(name4, name5));
+        System.out.println("ispangram : " + so.ispangram(name6));
     }
 }
